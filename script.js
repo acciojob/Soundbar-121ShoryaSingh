@@ -3,6 +3,7 @@
 const sounds = ["rain", "ocean", "bird", "wind", "fire"];
 
 const buttonContainer = document.getElementById("buttons");
+let playingAudios = [];
 
 sounds.forEach((sound) => {
 	const btn = document.createElement("button");
@@ -10,10 +11,10 @@ sounds.forEach((sound) => {
 	btn.innerText =sound;
 
 	btn.addEventListener("click", () => {
-		stopAllSound();
-		const audio = new Audio(`sound/${sound}.mp3`);
+		stopAllSounds();
+		const audio = new Audio(`sounds/${sound}.mp3`);
+		playingAudios.push(audio)
 		audio.play();
-		btn.currentAudio = audio;
 	})
 
 	buttonContainer.appendChild(btn);
@@ -26,7 +27,10 @@ stopBtn.innerText = "stop";
 stopBtn.addEventListener('click', stopAllSounds);
 buttonContainer.appendChild(stopBtn);
 
-function stopAllSound() {
-	const audios = document.querySelector('audio');
-	audios.forEach(a => a.pause());
+function stopAllSounds() {
+	playingAudios.forEach((audio)=> {
+		audio.pause();
+		audio.currentTime = 0;
+	})
+	playingAudios = []
 }

@@ -1,6 +1,6 @@
 //your JS code here. If required.
 
-const sounds = ["rain", "ocean", "bird", "wind", "fire"];
+const sounds = ["rain", "ocean", "bird", "wind", "fire", "ground"];
 
 const buttonContainer = document.getElementById("buttons");
 let playingAudios = [];

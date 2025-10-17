@@ -1,20 +1,83 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title>Soundbar</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 30px;
+      background: #f6f8fa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #buttons {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .btn {
+      padding: 12px 28px;
+      background: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn:hover {
+      background: #2980b9;
+    }
+    .stop {
+      padding: 12px 28px;
+      background: #e74c3c;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-bottom: 18px;
+    }
+    .stop:hover {
+      background: #c0392b;
+    }
+  </style>
 </head>
-
 <body>
-	<h1>Soundbar</h1>
-	<section id='buttons'>
-		
-	</section>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+  <h2>Soundbar</h2>
+  <div id="buttons"></div>
+  <button class="stop">Stop</button>
+  <script>
+    // List of filenames in sounds/ folder, no extension
+    const sounds = ['sound1', 'sound2', 'sound3']; // change these names to actual files
 
+    const buttonsDiv = document.getElementById('buttons');
+    let currentAudio = null;
+
+    sounds.forEach(sound => {
+      const btn = document.createElement('button');
+      btn.className = "btn";
+      btn.innerText = sound;
+      btn.onclick = function () {
+        if (currentAudio) {
+          currentAudio.pause();
+          currentAudio.currentTime = 0;
+        }
+        currentAudio = new Audio(`sounds/${sound}.mp3`);
+        currentAudio.play();
+      };
+      buttonsDiv.appendChild(btn);
+    });
+
+    document.querySelector('.stop').onclick = function () {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+      }
+    };
+  </script>
 </body>
-
 </html>

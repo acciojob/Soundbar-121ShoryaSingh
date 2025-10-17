@@ -11,7 +11,10 @@ sounds.forEach((sound) => {
 	btn.innerText =sound;
 
 	btn.addEventListener("click", () => {
-		
+		stopAllSounds();
+		const audio = new Audio();
+		playingAudios.push(audio)
+		audio.play();
 	})
 
 	buttonContainer.appendChild(btn);
@@ -26,7 +29,8 @@ buttonContainer.appendChild(stopBtn);
 
 function stopAllSounds() {
 	playingAudios.forEach((audio)=> {
-		
+		audio.pause();
+		audio.currentTime = 0;
 	})
 	playingAudios = []
 }
